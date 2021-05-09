@@ -1,6 +1,9 @@
+import 'package:chlorophyll/constants/svgConst.dart';
 import 'package:chlorophyll/constants/theme.dart';
 import 'package:chlorophyll/helpers/size.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -27,13 +30,82 @@ class _DashboardState extends State<Dashboard> {
         ),
         Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: s.wHelper(4),
+            horizontal: s.wHelper(5),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: s.hHelper(5),
+                height: s.hHelper(8),
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Welcome,",
+                        style: smallTextBold,
+                      ),
+                      Text(
+                        "Siddharth",
+                        style: bigTextBold,
+                      ),
+                    ],
+                  ),
+                  Spacer(),
+                  GestureDetector(
+                    onTap: () {},
+                    child: Icon(
+                      CupertinoIcons.profile_circled,
+                      size: 36,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: s.hHelper(4),
+              ),
+              Text(
+                "Sunny, Clear",
+                style: smallTextBold,
+              ),
+              SizedBox(
+                height: s.hHelper(1),
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    child: SvgPicture.asset(
+                      sun,
+                    ),
+                  ),
+                  SizedBox(
+                    width: s.wHelper(2),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "25° Celcius",
+                        style: smallTextLight,
+                      ),
+                      Text(
+                        "Humidity 27%",
+                        style: smallTextLight,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: s.hHelper(8),
+              ),
+              Text(
+                "Your past searches",
+                style: smallerTextBold,
               ),
             ],
           ),
