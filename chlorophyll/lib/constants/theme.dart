@@ -11,6 +11,12 @@ TextStyle smallTextLight = GoogleFonts.montserrat(
   fontWeight: FontWeight.w300,
 );
 
+TextStyle bigTextLight = GoogleFonts.montserrat(
+  color: Colors.black,
+  fontSize: 18,
+  fontWeight: FontWeight.w300,
+);
+
 TextStyle smallTextBold = GoogleFonts.montserrat(
   color: Colors.black,
   fontSize: 24,
@@ -20,7 +26,7 @@ TextStyle smallTextBold = GoogleFonts.montserrat(
 TextStyle buttonText = GoogleFonts.montserrat(
   color: Colors.black,
   fontSize: 14,
-  fontWeight: FontWeight.w700,
+  fontWeight: FontWeight.w500,
 );
 
 TextStyle smallerTextBold = GoogleFonts.montserrat(
@@ -32,5 +38,5 @@ TextStyle smallerTextBold = GoogleFonts.montserrat(
 TextStyle bigTextBold = GoogleFonts.montserrat(
   color: Colors.black,
   fontSize: 36,
-  fontWeight: FontWeight.w500,
+  fontWeight: FontWeight.w700,
 );
