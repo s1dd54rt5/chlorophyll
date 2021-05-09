@@ -28,7 +28,7 @@ class _LandingScreenState extends State<LandingScreen> {
         backgroundColor: Colors.white,
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Colors.white,
-          elevation: 0,
+          elevation: 8,
           selectedItemColor: primaryGreen,
           unselectedItemColor: grey,
           showUnselectedLabels: true,

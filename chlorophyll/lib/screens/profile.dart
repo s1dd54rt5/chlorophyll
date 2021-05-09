@@ -102,7 +102,7 @@ class _ProfileState extends State<Profile> {
                   height: s.hHelper(4),
                 ),
                 CustomButton(
-                  title: "Log out",
+                  title: "Log Out",
                   onButtonPressed: () {},
                 )
               ],

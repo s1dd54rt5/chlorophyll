@@ -2,6 +2,7 @@ import 'package:chlorophyll/constants/svgConst.dart';
 import 'package:chlorophyll/constants/theme.dart';
 import 'package:chlorophyll/helpers/size.dart';
 import 'package:chlorophyll/screens/profile.dart';
+import 'package:chlorophyll/screens/upload.dart';
 import 'package:chlorophyll/widgets/button.dart';
 import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:flutter/cupertino.dart';
@@ -137,7 +138,9 @@ class _DashboardState extends State<Dashboard> {
               ),
               CustomButton(
                 title: "Start analysis",
-                onButtonPressed: () {},
+                onButtonPressed: () {
+                  Get.to(() => Upload());
+                },
               )
             ],
           ),
