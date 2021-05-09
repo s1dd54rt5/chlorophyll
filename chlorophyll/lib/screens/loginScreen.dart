@@ -28,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
             width: double.infinity,
             height: s.hHelper(30),
             child: SvgPicture.asset(
-              SvgHelper.logo,
+              logo,
             ),
           ),
           Container(

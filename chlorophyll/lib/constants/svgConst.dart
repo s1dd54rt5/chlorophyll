@@ -1,3 +1,1 @@
-class SvgHelper {
-  static const String logo = 'assets/svg/chlorologo.svg';
-}
+String logo = 'assets/svg/chlorologo.svg';
