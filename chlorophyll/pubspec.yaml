@@ -52,6 +52,7 @@ flutter:
     - google_fonts/Montserrat-Thin.ttf
     - assets/svg/chlorologo.svg
     - assets/svg/sun.svg
+    - assets/svg/boxpattern.svg
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

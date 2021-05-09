@@ -1,6 +1,7 @@
 import 'package:chlorophyll/constants/theme.dart';
 import 'package:chlorophyll/helpers/size.dart';
 import 'package:chlorophyll/widgets/button.dart';
+import 'package:chlorophyll/widgets/reminderCard.dart';
 import 'package:flutter/material.dart';
 
 class Reminders extends StatefulWidget {
@@ -9,6 +10,23 @@ class Reminders extends StatefulWidget {
 }
 
 class _RemindersState extends State<Reminders> {
+  List reminders = [
+    {
+      "crop": "Wheat",
+      "time": "7:30 AM",
+      "days": "MON, TUE, WED",
+    },
+    {
+      "crop": "Rice",
+      "time": "8:30 AM",
+      "days": "TUE, WED",
+    },
+    {
+      "crop": "Maize",
+      "time": "7:30 PM",
+      "days": "MON, TUE, FRI",
+    },
+  ];
   @override
   Widget build(BuildContext context) {
     SizeHelper s = SizeHelper(context);
@@ -41,8 +59,14 @@ class _RemindersState extends State<Reminders> {
                 style: bigTextBold,
               ),
               SizedBox(
-                height: s.hHelper(4),
+                height: s.hHelper(2),
               ),
+              for (var reminder in reminders)
+                ReminderCard(
+                  crop: reminder["crop"],
+                  days: reminder["days"],
+                  time: reminder["time"],
+                ),
               SizedBox(
                 height: s.hHelper(4),
               ),
