@@ -8,7 +8,7 @@ import 'package:flutter/services.dart';
 
 class LandingScreen extends StatefulWidget {
   @override
-  _LandingScreenState createState() => _LandingScreenState(currentIndex: 2);
+  _LandingScreenState createState() => _LandingScreenState(currentIndex: 1);
 }
 
 class _LandingScreenState extends State<LandingScreen> {
@@ -43,15 +43,9 @@ class _LandingScreenState extends State<LandingScreen> {
           items: [
             BottomNavigationBarItem(
               icon: Icon(
-                CupertinoIcons.game_controller,
-              ),
-              label: "Fun",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
                 CupertinoIcons.time,
               ),
-              label: "Timeline",
+              label: "Reminders",
             ),
             BottomNavigationBarItem(
               icon: Icon(
@@ -61,15 +55,9 @@ class _LandingScreenState extends State<LandingScreen> {
             ),
             BottomNavigationBarItem(
               icon: Icon(
-                CupertinoIcons.doc_plaintext,
+                CupertinoIcons.tree,
               ),
-              label: "Forms",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                CupertinoIcons.person,
-              ),
-              label: "Profile",
+              label: "Fertiliser",
             ),
           ],
         ),

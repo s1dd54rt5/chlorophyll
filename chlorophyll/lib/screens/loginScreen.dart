@@ -1,8 +1,10 @@
 import 'package:chlorophyll/constants/svgConst.dart';
 import 'package:chlorophyll/constants/theme.dart';
 import 'package:chlorophyll/helpers/size.dart';
+import 'package:chlorophyll/screens/landingScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -115,7 +117,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     horizontal: s.wHelper(5),
                   ),
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(LandingScreen());
+                    },
                     child: Container(
                       alignment: Alignment.center,
                       height: s.hHelper(8),
