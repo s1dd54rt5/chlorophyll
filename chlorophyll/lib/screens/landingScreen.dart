@@ -31,7 +31,7 @@ class _LandingScreenState extends State<LandingScreen> {
           elevation: 0,
           selectedItemColor: primaryGreen,
           unselectedItemColor: grey,
-          showUnselectedLabels: false,
+          showUnselectedLabels: true,
           type: BottomNavigationBarType.fixed,
           currentIndex: currentIndex,
           onTap: (index) {

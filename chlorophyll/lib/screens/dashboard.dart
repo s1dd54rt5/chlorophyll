@@ -1,11 +1,13 @@
 import 'package:chlorophyll/constants/svgConst.dart';
 import 'package:chlorophyll/constants/theme.dart';
 import 'package:chlorophyll/helpers/size.dart';
+import 'package:chlorophyll/screens/profile.dart';
 import 'package:chlorophyll/widgets/button.dart';
 import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -58,7 +60,9 @@ class _DashboardState extends State<Dashboard> {
                   ),
                   Spacer(),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(() => Profile());
+                    },
                     child: Icon(
                       CupertinoIcons.profile_circled,
                       size: 36,
