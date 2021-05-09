@@ -118,7 +118,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   child: TextButton(
                     onPressed: () {
-                      Get.to(LandingScreen());
+                      Get.to(() => LandingScreen());
                     },
                     child: Container(
                       alignment: Alignment.center,

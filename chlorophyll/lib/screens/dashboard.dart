@@ -1,6 +1,8 @@
 import 'package:chlorophyll/constants/svgConst.dart';
 import 'package:chlorophyll/constants/theme.dart';
 import 'package:chlorophyll/helpers/size.dart';
+import 'package:chlorophyll/widgets/button.dart';
+import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -107,6 +109,32 @@ class _DashboardState extends State<Dashboard> {
                 "Your past searches",
                 style: smallerTextBold,
               ),
+              SizedBox(
+                height: s.hHelper(2),
+              ),
+              Container(
+                height: s.hHelper(15),
+                width: double.infinity,
+                decoration: DottedDecoration(
+                  dash: [10, 15],
+                  shape: Shape.box,
+                  borderRadius: BorderRadius.circular(20),
+                  color: primaryGreen,
+                  strokeWidth: 2.5,
+                ),
+                alignment: Alignment.center,
+                child: Text(
+                  "No searches yet",
+                  style: smallTextLight,
+                ),
+              ),
+              SizedBox(
+                height: s.hHelper(4),
+              ),
+              CustomButton(
+                title: "Start analysis",
+                onButtonPressed: () {},
+              )
             ],
           ),
         ),
