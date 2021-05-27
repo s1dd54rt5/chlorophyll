@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>137286780636-9kfrpmg411vjro28o6j9p2tma8agptn0.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.137286780636-9kfrpmg411vjro28o6j9p2tma8agptn0</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>137286780636-b5k409egluh5715sejj52detv1dpr3f6.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyATeTVqK0x850HR99obZ8_idyJAx0EYo10</string>
+	<key>GCM_SENDER_ID</key>
+	<string>137286780636</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.44t4nk1.chlorophyll</string>
+	<key>PROJECT_ID</key>
+	<string>chlorophyll-421b2</string>
+	<key>STORAGE_BUCKET</key>
+	<string>chlorophyll-421b2.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:137286780636:ios:24e22afa01b31ec3c79619</string>
+</dict>
+</plist>

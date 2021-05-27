@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "137286780636",
+    "project_id": "chlorophyll-421b2",
+    "storage_bucket": "chlorophyll-421b2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:137286780636:android:3135f22896824cbcc79619",
+        "android_client_info": {
+          "package_name": "com.example.chlorophyll"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "137286780636-b5k409egluh5715sejj52detv1dpr3f6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.chlorophyll",
+            "certificate_hash": "647f72e857c6d99dae941028f80b5458c03e20c1"
+          }
+        },
+        {
+          "client_id": "137286780636-5q8lq44331g5ehmngli4221t6691msvg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMlp-A2rygHl9L_Ql82T9vpEN_xyKgEq8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "137286780636-5q8lq44331g5ehmngli4221t6691msvg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
