@@ -1,6 +1,5 @@
 import 'dart:convert';
-
-import 'package:chlorophyll/constants/svgConst.dart';
+import 'package:chlorophyll/api/weather.dart';
 import 'package:chlorophyll/constants/theme.dart';
 import 'package:chlorophyll/helpers/prefs.dart';
 import 'package:chlorophyll/helpers/size.dart';
@@ -10,7 +9,7 @@ import 'package:chlorophyll/widgets/button.dart';
 import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:location/location.dart';
 import 'package:get/get.dart';
 
 class Dashboard extends StatefulWidget {
@@ -28,6 +27,46 @@ class _DashboardState extends State<Dashboard> {
 
   Map<String, dynamic> userDetails = {};
 
+  Map<String, dynamic> weatherDetails = {};
+
+  Weather w = new Weather();
+
+  Future<void> getLocation() async {
+    setState(() {
+      isLoading = true;
+    });
+    Location location = new Location();
+
+    bool _serviceEnabled;
+    PermissionStatus _permissionGranted;
+    LocationData _locationData;
+
+    _serviceEnabled = await location.serviceEnabled();
+    if (!_serviceEnabled) {
+      _serviceEnabled = await location.requestService();
+      if (!_serviceEnabled) {
+        return;
+      }
+    }
+
+    _permissionGranted = await location.hasPermission();
+    if (_permissionGranted == PermissionStatus.denied) {
+      _permissionGranted = await location.requestPermission();
+      if (_permissionGranted != PermissionStatus.granted) {
+        return;
+      }
+    }
+
+    _locationData = await location.getLocation();
+
+    weatherDetails = await w.getWeatherDetails(
+        _locationData.latitude.toString(), _locationData.longitude.toString());
+    print(weatherDetails);
+    setState(() {
+      isLoading = false;
+    });
+  }
+
   Future<void> getDetails() async {
     setState(() {
       isLoading = true;
@@ -35,6 +74,7 @@ class _DashboardState extends State<Dashboard> {
     var prefs = await getHelper();
     var json = prefs.getString("userDetails");
     userDetails = jsonDecode(json);
+    await getLocation();
     setState(() {
       isLoading = false;
     });
@@ -44,7 +84,9 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     SizeHelper s = SizeHelper(context);
     return isLoading
-        ? CircularProgressIndicator()
+        ? Center(
+            child: CircularProgressIndicator(),
+          )
         : Stack(
             children: [
               Positioned(
@@ -101,35 +143,28 @@ class _DashboardState extends State<Dashboard> {
                       height: s.hHelper(4),
                     ),
                     Text(
-                      "Sunny, Clear",
+                      weatherDetails["weather"][0]["main"],
                       style: smallTextBold,
                     ),
                     SizedBox(
                       height: s.hHelper(1),
                     ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                    SizedBox(
+                      width: s.wHelper(2),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          child: SvgPicture.asset(
-                            sun,
-                          ),
+                        Text(
+                          weatherDetails["main"]["temp"]
+                                  .toString()
+                                  .substring(0, 2) +
+                              "° Celcius",
+                          style: smallTextLight,
                         ),
-                        SizedBox(
-                          width: s.wHelper(2),
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "25° Celcius",
-                              style: smallTextLight,
-                            ),
-                            Text(
-                              "Humidity 27%",
-                              style: smallTextLight,
-                            ),
-                          ],
+                        Text(
+                          "Humidity " + weatherDetails["main"]["temp"].toString() + "%",
+                          style: smallTextLight,
                         ),
                       ],
                     ),

@@ -18,6 +18,10 @@
 	</dict>
 </array>
 <!-- End of the Google Sign-in Section -->
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Loaction Permission</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Loaction Permission</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
