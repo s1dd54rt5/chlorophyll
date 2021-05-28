@@ -1,5 +1,4 @@
 import 'package:chlorophyll/helpers/prefs.dart';
-import 'package:chlorophyll/screens/dashboard.dart';
 import 'package:chlorophyll/screens/landingScreen.dart';
 import 'package:chlorophyll/screens/loginScreen.dart';
 import 'package:firebase_core/firebase_core.dart';

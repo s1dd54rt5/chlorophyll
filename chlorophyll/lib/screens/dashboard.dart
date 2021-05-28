@@ -75,6 +75,9 @@ class _DashboardState extends State<Dashboard> {
     var json = prefs.getString("userDetails");
     userDetails = jsonDecode(json);
     await getLocation();
+    var date = DateTime.fromMillisecondsSinceEpoch(
+        weatherDetails["sys"]["sunrise"] * 1000);
+    print(date);
     setState(() {
       isLoading = false;
     });
@@ -85,7 +88,9 @@ class _DashboardState extends State<Dashboard> {
     SizeHelper s = SizeHelper(context);
     return isLoading
         ? Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicator(
+              valueColor: new AlwaysStoppedAnimation<Color>(primaryGreen),
+            ),
           )
         : Stack(
             children: [
@@ -140,14 +145,25 @@ class _DashboardState extends State<Dashboard> {
                       ],
                     ),
                     SizedBox(
-                      height: s.hHelper(4),
+                      height: s.hHelper(2),
                     ),
                     Text(
-                      weatherDetails["weather"][0]["main"],
+                      "Today in " + weatherDetails["name"] + "!",
                       style: smallTextBold,
                     ),
                     SizedBox(
-                      height: s.hHelper(1),
+                      height: s.hHelper(2),
+                    ),
+                    Text(
+                      weatherDetails["weather"][0]["main"],
+                      style: smallerTextBold,
+                    ),
+                    SizedBox(
+                      height: s.hHelper(0.5),
+                    ),
+                    Text(
+                      weatherDetails["weather"][0]["description"],
+                      style: smallTextLight,
                     ),
                     SizedBox(
                       width: s.wHelper(2),
@@ -163,7 +179,9 @@ class _DashboardState extends State<Dashboard> {
                           style: smallTextLight,
                         ),
                         Text(
-                          "Humidity " + weatherDetails["main"]["temp"].toString() + "%",
+                          "Humidity " +
+                              weatherDetails["main"]["temp"].toString() +
+                              "%",
                           style: smallTextLight,
                         ),
                       ],
