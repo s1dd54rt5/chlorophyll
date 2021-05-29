@@ -2,6 +2,7 @@ import 'package:chlorophyll/constants/theme.dart';
 import 'package:chlorophyll/helpers/size.dart';
 import 'package:chlorophyll/widgets/button.dart';
 import 'package:chlorophyll/widgets/reminderCard.dart';
+import 'package:chlorophyll/widgets/setReminderForm.dart';
 import 'package:flutter/material.dart';
 
 class Reminders extends StatefulWidget {
@@ -72,7 +73,12 @@ class _RemindersState extends State<Reminders> {
               ),
               CustomButton(
                 title: "Set new reminders",
-                onButtonPressed: () {},
+                onButtonPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (_) => ReminderForm(),
+                  );
+                },
               )
             ],
           ),
