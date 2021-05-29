@@ -29,8 +29,8 @@ class _ReminderCardState extends State<ReminderCard> {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: grey,
-            blurRadius: 20,
+            color: greyShadow,
+            blurRadius: 12,
             spreadRadius: 0.1,
           ),
         ],

@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 Color secondaryGreen = Color(0xffB5FBD6);
 Color primaryGreen = Color(0xff20F284);
 Color grey = Color(0xff8a8a8a);
+Color greyShadow = Color(0xffe3e3e3);
 
 TextStyle smallTextLight = GoogleFonts.montserrat(
   color: Colors.black,

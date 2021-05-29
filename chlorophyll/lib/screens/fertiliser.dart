@@ -49,7 +49,7 @@ class _FertiliserState extends State<Fertiliser> {
                   color: Colors.white,
                   boxShadow: [
                     BoxShadow(
-                      color: grey,
+                      color: greyShadow,
                       blurRadius: 20,
                       spreadRadius: 0.1,
                     ),
