@@ -11,6 +11,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -61,10 +62,16 @@ class _DashboardState extends State<Dashboard> {
 
     weatherDetails = await w.getWeatherDetails(
         _locationData.latitude.toString(), _locationData.longitude.toString());
-    print(weatherDetails);
     setState(() {
       isLoading = false;
     });
+  }
+
+  DateTime sunset;
+  DateTime sunrise;
+
+  String getTime(DateTime date) {
+    return DateFormat("h:mma").format(date).toString();
   }
 
   Future<void> getDetails() async {
@@ -75,9 +82,10 @@ class _DashboardState extends State<Dashboard> {
     var json = prefs.getString("userDetails");
     userDetails = jsonDecode(json);
     await getLocation();
-    var date = DateTime.fromMillisecondsSinceEpoch(
+    sunrise = DateTime.fromMillisecondsSinceEpoch(
         weatherDetails["sys"]["sunrise"] * 1000);
-    print(date);
+    sunset = DateTime.fromMillisecondsSinceEpoch(
+        weatherDetails["sys"]["sunset"] * 1000);
     setState(() {
       isLoading = false;
     });
@@ -187,7 +195,39 @@ class _DashboardState extends State<Dashboard> {
                       ],
                     ),
                     SizedBox(
-                      height: s.hHelper(8),
+                      height: s.hHelper(0.5),
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(CupertinoIcons.sunrise),
+                        SizedBox(
+                          width: s.wHelper(1),
+                        ),
+                        Text(
+                          getTime(sunrise),
+                          style: smallTextLight,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: s.hHelper(0.5),
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(CupertinoIcons.sunset),
+                        SizedBox(
+                          width: s.wHelper(1),
+                        ),
+                        Text(
+                          getTime(sunset),
+                          style: smallTextLight,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: s.hHelper(4),
                     ),
                     Text(
                       "Your past searches",
