@@ -20,10 +20,13 @@ class _ReminderFormState extends State<ReminderForm> {
     "sun": false,
   };
 
+  bool datePicked = false;
+
   Future<void> _selectTime(BuildContext context) async {
     final TimeOfDay pickedS = await showTimePicker(
         context: context,
         initialTime: selectedTime,
+        initialEntryMode: TimePickerEntryMode.dial,
         builder: (BuildContext context, Widget child) {
           return MediaQuery(
             data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
@@ -119,7 +122,7 @@ class _ReminderFormState extends State<ReminderForm> {
               ),
             ),
             SizedBox(
-              height: s.hHelper(1),
+              height: s.hHelper(2),
             ),
             Text(
               "Time",
@@ -128,12 +131,46 @@ class _ReminderFormState extends State<ReminderForm> {
             SizedBox(
               height: s.hHelper(1),
             ),
-            TextButton(
-              onPressed: () {
+            GestureDetector(
+              onTap: () {
                 _selectTime(context);
+                setState(() {
+                  datePicked = true;
+                });
               },
-              child: Text("pres"),
-            )
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: s.wHelper(5)),
+                alignment: Alignment.centerLeft,
+                width: double.infinity,
+                height: s.hHelper(5),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: primaryGreen),
+                ),
+                child: datePicked
+                    ? Text(
+                        selectedTime.hour.toString() +
+                            ":" +
+                            selectedTime.minute.toString(),
+                        style: smallTextLight,
+                        textAlign: TextAlign.left,
+                      )
+                    : Text(
+                        "Pick a date",
+                        style: smallTextLight,
+                      ),
+              ),
+            ),
+            SizedBox(
+              height: s.hHelper(2),
+            ),
+            Text(
+              "Days",
+              style: smallerTextBold,
+            ),
+            SizedBox(
+              height: s.hHelper(1),
+            ),
           ],
         ),
       ),

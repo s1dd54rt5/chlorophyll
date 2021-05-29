@@ -198,7 +198,7 @@ class _DashboardState extends State<Dashboard> {
                       height: s.hHelper(0.5),
                     ),
                     Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Icon(CupertinoIcons.sunrise),
                         SizedBox(
@@ -214,7 +214,7 @@ class _DashboardState extends State<Dashboard> {
                       height: s.hHelper(0.5),
                     ),
                     Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Icon(CupertinoIcons.sunset),
                         SizedBox(
