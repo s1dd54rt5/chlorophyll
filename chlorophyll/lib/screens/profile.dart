@@ -119,6 +119,8 @@ class _ProfileState extends State<Profile> {
                       CustomButton(
                         title: "Log Out",
                         onButtonPressed: () async {
+                          var locally = getNotifHelper(context);
+                          locally.cancelAll();
                           var pref = await getHelper();
                           pref.clear();
                           Get.to(() => LoginScreen());

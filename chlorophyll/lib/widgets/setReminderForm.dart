@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:chlorophyll/constants/theme.dart';
 import 'package:chlorophyll/helpers/prefs.dart';
 import 'package:chlorophyll/helpers/size.dart';
@@ -28,7 +27,6 @@ class _ReminderFormState extends State<ReminderForm> {
   Map reminder = {};
   bool datePicked = false;
   List reminders = [];
-
   Future<void> _selectTime(BuildContext context) async {
     final TimeOfDay pickedS = await showTimePicker(
         context: context,
@@ -49,6 +47,7 @@ class _ReminderFormState extends State<ReminderForm> {
 
   @override
   Widget build(BuildContext context) {
+    var locally = getNotifHelper(context);
     SizeHelper s = SizeHelper(context);
     return Dialog(
       backgroundColor: Colors.white,
@@ -376,6 +375,10 @@ class _ReminderFormState extends State<ReminderForm> {
                 }
                 reminders.add(reminder);
                 prefs.setString("reminders", jsonEncode(reminders));
+                locally.schedule(
+                    title: "Reminder!",
+                    message: title.text,
+                    duration: Duration(seconds: 5));
                 Get.to(
                   () => LandingScreen(
                     index: 0,
