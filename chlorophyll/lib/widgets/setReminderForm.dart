@@ -1,14 +1,14 @@
+import 'dart:convert';
+
 import 'package:chlorophyll/constants/theme.dart';
+import 'package:chlorophyll/helpers/prefs.dart';
 import 'package:chlorophyll/helpers/size.dart';
+import 'package:chlorophyll/screens/landingScreen.dart';
 import 'package:chlorophyll/widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-typedef void MapCallback(Map val);
-
 class ReminderForm extends StatefulWidget {
-  final MapCallback callback;
-  ReminderForm({this.callback});
   @override
   _ReminderFormState createState() => _ReminderFormState();
 }
@@ -27,6 +27,7 @@ class _ReminderFormState extends State<ReminderForm> {
   };
   Map reminder = {};
   bool datePicked = false;
+  List reminders = [];
 
   Future<void> _selectTime(BuildContext context) async {
     final TimeOfDay pickedS = await showTimePicker(
@@ -355,7 +356,7 @@ class _ReminderFormState extends State<ReminderForm> {
             ),
             CustomButton(
               title: "Add reminder",
-              onButtonPressed: () {
+              onButtonPressed: () async {
                 reminder["crop"] = title.text;
                 reminder["time"] = selectedTime.hour.toString() +
                     ":" +
@@ -366,9 +367,20 @@ class _ReminderFormState extends State<ReminderForm> {
                     days.add(key);
                   }
                 });
+                var prefs = await getHelper();
                 reminder["days"] = days;
-                widget.callback(reminder);
-                Get.back();
+                if (!prefs.containsKey("reminders")) {
+                  reminders = [];
+                } else {
+                  reminders = jsonDecode(prefs.getString("reminders"));
+                }
+                reminders.add(reminder);
+                prefs.setString("reminders", jsonEncode(reminders));
+                Get.to(
+                  () => LandingScreen(
+                    index: 0,
+                  ),
+                );
               },
             )
           ],

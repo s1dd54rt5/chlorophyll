@@ -7,8 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class LandingScreen extends StatefulWidget {
+  final int index;
+  LandingScreen({@required this.index});
   @override
-  _LandingScreenState createState() => _LandingScreenState(currentIndex: 1);
+  _LandingScreenState createState() => _LandingScreenState(currentIndex: index);
 }
 
 class _LandingScreenState extends State<LandingScreen> {

@@ -120,7 +120,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: TextButton(
                     onPressed: () async {
                       await signInWithGoogle();
-                      Get.to(() => LandingScreen());
+                      Get.to(
+                        () => LandingScreen(
+                          index: 1,
+                        ),
+                      );
                     },
                     child: Container(
                       alignment: Alignment.center,

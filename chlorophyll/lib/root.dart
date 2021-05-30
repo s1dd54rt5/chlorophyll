@@ -47,7 +47,11 @@ class _MyAppState extends State<MyApp> {
               primaryColor: Color(0xff20F284),
             ),
             debugShowCheckedModeBanner: false,
-            home: signedIn ? LandingScreen() : LoginScreen(),
+            home: signedIn
+                ? LandingScreen(
+                    index: 1,
+                  )
+                : LoginScreen(),
           );
         }
 
