@@ -1,8 +1,14 @@
 import 'package:chlorophyll/constants/theme.dart';
 import 'package:chlorophyll/helpers/size.dart';
+import 'package:chlorophyll/widgets/button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+typedef void MapCallback(Map val);
 
 class ReminderForm extends StatefulWidget {
+  final MapCallback callback;
+  ReminderForm({this.callback});
   @override
   _ReminderFormState createState() => _ReminderFormState();
 }
@@ -10,7 +16,7 @@ class ReminderForm extends StatefulWidget {
 class _ReminderFormState extends State<ReminderForm> {
   final TextEditingController title = TextEditingController();
   TimeOfDay selectedTime = TimeOfDay.now();
-  final Map<String, bool> daySelected = {
+  final Map<String, bool> daysSelected = {
     "mon": false,
     "tue": false,
     "wed": false,
@@ -19,7 +25,7 @@ class _ReminderFormState extends State<ReminderForm> {
     "sat": false,
     "sun": false,
   };
-
+  Map reminder = {};
   bool datePicked = false;
 
   Future<void> _selectTime(BuildContext context) async {
@@ -50,7 +56,7 @@ class _ReminderFormState extends State<ReminderForm> {
           horizontal: s.wHelper(5),
           vertical: s.hHelper(3),
         ),
-        height: s.hHelper(50),
+        height: s.hHelper(60),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -142,7 +148,7 @@ class _ReminderFormState extends State<ReminderForm> {
                 padding: EdgeInsets.symmetric(horizontal: s.wHelper(5)),
                 alignment: Alignment.centerLeft,
                 width: double.infinity,
-                height: s.hHelper(5),
+                height: s.hHelper(6),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(color: primaryGreen),
@@ -171,6 +177,200 @@ class _ReminderFormState extends State<ReminderForm> {
             SizedBox(
               height: s.hHelper(1),
             ),
+            Row(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      daysSelected["mon"] = !daysSelected["mon"];
+                    });
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: s.wHelper(3), vertical: s.hHelper(0.8)),
+                    decoration: BoxDecoration(
+                      color:
+                          daysSelected["mon"] ? secondaryGreen : Colors.white,
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(color: primaryGreen),
+                    ),
+                    child: Text(
+                      "MON",
+                      style: smallTextLight,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: s.wHelper(2),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      daysSelected["tue"] = !daysSelected["tue"];
+                    });
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: s.wHelper(3), vertical: s.hHelper(0.8)),
+                    decoration: BoxDecoration(
+                      color:
+                          daysSelected["tue"] ? secondaryGreen : Colors.white,
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(color: primaryGreen),
+                    ),
+                    child: Text(
+                      "TUE",
+                      style: smallTextLight,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: s.wHelper(2),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      daysSelected["wed"] = !daysSelected["wed"];
+                    });
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: s.wHelper(3), vertical: s.hHelper(0.8)),
+                    decoration: BoxDecoration(
+                      color:
+                          daysSelected["wed"] ? secondaryGreen : Colors.white,
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(color: primaryGreen),
+                    ),
+                    child: Text(
+                      "WED",
+                      style: smallTextLight,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: s.hHelper(0.8),
+            ),
+            Row(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      daysSelected["thu"] = !daysSelected["thu"];
+                    });
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: s.wHelper(3), vertical: s.hHelper(0.8)),
+                    decoration: BoxDecoration(
+                      color:
+                          daysSelected["thu"] ? secondaryGreen : Colors.white,
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(color: primaryGreen),
+                    ),
+                    child: Text(
+                      "THU",
+                      style: smallTextLight,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: s.wHelper(2),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      daysSelected["fri"] = !daysSelected["fri"];
+                    });
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: s.wHelper(3), vertical: s.hHelper(0.8)),
+                    decoration: BoxDecoration(
+                      color:
+                          daysSelected["fri"] ? secondaryGreen : Colors.white,
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(color: primaryGreen),
+                    ),
+                    child: Text(
+                      "FRI",
+                      style: smallTextLight,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: s.wHelper(2),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      daysSelected["sat"] = !daysSelected["sat"];
+                    });
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: s.wHelper(3), vertical: s.hHelper(0.8)),
+                    decoration: BoxDecoration(
+                      color:
+                          daysSelected["sat"] ? secondaryGreen : Colors.white,
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(color: primaryGreen),
+                    ),
+                    child: Text(
+                      "SAT",
+                      style: smallTextLight,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: s.wHelper(2),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      daysSelected["sun"] = !daysSelected["sun"];
+                    });
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: s.wHelper(3), vertical: s.hHelper(0.8)),
+                    decoration: BoxDecoration(
+                      color:
+                          daysSelected["sun"] ? secondaryGreen : Colors.white,
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(color: primaryGreen),
+                    ),
+                    child: Text(
+                      "SUN",
+                      style: smallTextLight,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: s.hHelper(2),
+            ),
+            CustomButton(
+              title: "Add reminder",
+              onButtonPressed: () {
+                reminder["crop"] = title.text;
+                reminder["time"] = selectedTime.hour.toString() +
+                    ":" +
+                    selectedTime.minute.toString();
+                List days = [];
+                daysSelected.forEach((key, value) {
+                  if (value == true) {
+                    days.add(key);
+                  }
+                });
+                reminder["days"] = days;
+                widget.callback(reminder);
+                Get.back();
+              },
+            )
           ],
         ),
       ),
