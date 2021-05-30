@@ -120,7 +120,7 @@ class _RemindersState extends State<Reminders> {
                             for (var reminder in reminders)
                               ReminderCard(
                                 crop: reminder["crop"],
-                                days: reminder["days"].toString(),
+                                days: reminder["days"],
                                 time: reminder["time"],
                               ),
                             SizedBox(

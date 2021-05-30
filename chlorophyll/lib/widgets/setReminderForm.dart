@@ -162,7 +162,7 @@ class _ReminderFormState extends State<ReminderForm> {
                         textAlign: TextAlign.left,
                       )
                     : Text(
-                        "Pick a date",
+                        "Pick a time",
                         style: smallTextLight,
                       ),
               ),
@@ -360,10 +360,10 @@ class _ReminderFormState extends State<ReminderForm> {
                 reminder["time"] = selectedTime.hour.toString() +
                     ":" +
                     selectedTime.minute.toString();
-                List days = [];
+                String days = "";
                 daysSelected.forEach((key, value) {
                   if (value == true) {
-                    days.add(key);
+                    days = days + key.toUpperCase() + " ";
                   }
                 });
                 var prefs = await getHelper();
