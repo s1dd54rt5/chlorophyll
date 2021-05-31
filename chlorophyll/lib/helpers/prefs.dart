@@ -8,7 +8,7 @@ Future<SharedPreferences> getHelper() async {
 }
 
 Locally getNotifHelper(BuildContext context) {
-  Locally locally = Locally(
+  Locally locally = new Locally(
     context: context,
     pageRoute: MaterialPageRoute(builder: (context) => LandingScreen(index: 1)),
     appIcon: 'mipmap/ic_launcher',

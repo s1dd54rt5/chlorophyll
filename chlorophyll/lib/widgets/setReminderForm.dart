@@ -4,8 +4,8 @@ import 'package:chlorophyll/helpers/prefs.dart';
 import 'package:chlorophyll/helpers/size.dart';
 import 'package:chlorophyll/screens/landingScreen.dart';
 import 'package:chlorophyll/widgets/button.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 
 class ReminderForm extends StatefulWidget {
@@ -379,58 +379,12 @@ class _ReminderFormState extends State<ReminderForm> {
                 reminders.add(reminder);
                 prefs.setString("reminders", jsonEncode(reminders));
                 Time t = Time(selectedTime.hour, selectedTime.minute, 0);
-                for (var day in dayList) {
-                  if (day == "mon") {
-                    locally.showWeeklyAtDayAndTime(
-                      title: "Reminder!",
-                      message: title.text,
-                      time: t,
-                      day: Day.monday,
-                    );
-                  } else if (day == "tue") {
-                    locally.showWeeklyAtDayAndTime(
-                      title: "Reminder!",
-                      message: title.text,
-                      time: t,
-                      day: Day.tuesday,
-                    );
-                  } else if (day == "wed") {
-                    locally.showWeeklyAtDayAndTime(
-                      title: "Reminder!",
-                      message: title.text,
-                      time: t,
-                      day: Day.wednesday,
-                    );
-                  } else if (day == "thu") {
-                    locally.showWeeklyAtDayAndTime(
-                      title: "Reminder!",
-                      message: title.text,
-                      time: t,
-                      day: Day.thursday,
-                    );
-                  } else if (day == "fri") {
-                    locally.showWeeklyAtDayAndTime(
-                      title: "Reminder!",
-                      message: title.text,
-                      time: t,
-                      day: Day.friday,
-                    );
-                  } else if (day == "sat") {
-                    locally.showWeeklyAtDayAndTime(
-                      title: "Reminder!",
-                      message: title.text,
-                      time: t,
-                      day: Day.saturday,
-                    );
-                  } else {
-                    locally.showWeeklyAtDayAndTime(
-                      title: "Reminder!",
-                      message: title.text,
-                      time: t,
-                      day: Day.sunday,
-                    );
-                  }
-                }
+                locally.showWeeklyAtDayAndTime(
+                  title: "Reminder!",
+                  message: title.text,
+                  time: t,
+                  day: Day.tuesday,
+                );
                 Get.to(
                   () => LandingScreen(
                     index: 0,
