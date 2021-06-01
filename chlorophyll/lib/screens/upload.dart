@@ -4,6 +4,11 @@ import 'package:chlorophyll/widgets/button.dart';
 import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'dart:io';
+import 'dart:typed_data';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
+// import 'package:mlkit/mlkit.dart';
 
 class Upload extends StatefulWidget {
   @override
