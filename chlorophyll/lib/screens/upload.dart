@@ -1,14 +1,12 @@
+import 'package:chlorophyll/api/crop.dart';
 import 'package:chlorophyll/constants/theme.dart';
 import 'package:chlorophyll/helpers/size.dart';
 import 'package:chlorophyll/widgets/button.dart';
 import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'dart:io';
-import 'dart:typed_data';
-import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-// import 'package:mlkit/mlkit.dart';
+import 'dart:io';
 
 class Upload extends StatefulWidget {
   @override
@@ -16,6 +14,20 @@ class Upload extends StatefulWidget {
 }
 
 class _UploadState extends State<Upload> {
+  File _image;
+  final picker = ImagePicker();
+  Future getImage() async {
+    final pickedFile = await picker.getImage(source: ImageSource.camera);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeHelper s = SizeHelper(context);
@@ -51,48 +63,58 @@ class _UploadState extends State<Upload> {
                 SizedBox(
                   height: s.hHelper(4),
                 ),
-                Container(
-                  height: s.hHelper(40),
-                  width: double.infinity,
-                  decoration: DottedDecoration(
-                    dash: [10, 15],
-                    shape: Shape.box,
-                    borderRadius: BorderRadius.circular(20),
-                    color: primaryGreen,
-                    strokeWidth: 2.5,
-                  ),
-                  alignment: Alignment.center,
-                  child: Stack(
-                    children: [
-                      Opacity(
-                        opacity: 0.15,
-                        child: Container(
-                          height: double.infinity,
+                GestureDetector(
+                  onTap: getImage,
+                  child: _image == null
+                      ? Container(
+                          height: s.hHelper(40),
                           width: double.infinity,
-                          margin: EdgeInsets.all(2),
-                          decoration: BoxDecoration(
+                          decoration: DottedDecoration(
+                            dash: [10, 15],
+                            shape: Shape.box,
                             borderRadius: BorderRadius.circular(20),
-                            color: grey,
+                            color: primaryGreen,
+                            strokeWidth: 2.5,
                           ),
+                          alignment: Alignment.center,
+                          child: Stack(
+                            children: [
+                              Opacity(
+                                opacity: 0.15,
+                                child: Container(
+                                  height: double.infinity,
+                                  width: double.infinity,
+                                  margin: EdgeInsets.all(2),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: grey,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                height: double.infinity,
+                                width: double.infinity,
+                                child: Icon(
+                                  CupertinoIcons.camera,
+                                  size: 36,
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      : ClipRRect(
+                          child: Image.file(_image),
+                          borderRadius: BorderRadius.circular(5),
                         ),
-                      ),
-                      Container(
-                        height: double.infinity,
-                        width: double.infinity,
-                        child: Icon(
-                          CupertinoIcons.camera,
-                          size: 36,
-                        ),
-                      ),
-                    ],
-                  ),
                 ),
                 SizedBox(
                   height: s.hHelper(4),
                 ),
                 CustomButton(
                   title: "Analyse",
-                  onButtonPressed: () {},
+                  onButtonPressed: () async {
+                    await uploadImage(_image);
+                  },
                 )
               ],
             ),

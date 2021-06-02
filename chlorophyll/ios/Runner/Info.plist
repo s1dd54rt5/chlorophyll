@@ -18,6 +18,12 @@
 	</dict>
 </array>
 <!-- End of the Google Sign-in Section -->
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Loaction Permission</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Loaction Permission</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Loaction Permission</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Loaction Permission</string>
 	<key>NSLocationAlwaysUsageDescription</key>
