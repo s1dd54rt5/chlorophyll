@@ -6,7 +6,7 @@ Future<void> uploadImage(File imageFile) async {
   var stream = new http.ByteStream(imageFile.openRead());
   stream.cast();
   var length = await imageFile.length();
-  var uri = Uri.parse("http://7dc1581d334e.ngrok.io/upload");
+  var uri = Uri.parse("http://598a22e730e8.ngrok.io/upload");
   var request = new http.MultipartRequest('POST', uri);
   var multiPartFile = new http.MultipartFile(
     'file',

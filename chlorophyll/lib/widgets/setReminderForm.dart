@@ -57,7 +57,7 @@ class _ReminderFormState extends State<ReminderForm> {
           horizontal: s.wHelper(5),
           vertical: s.hHelper(3),
         ),
-        height: s.hHelper(60),
+        height: s.hHelper(50),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -383,7 +383,7 @@ class _ReminderFormState extends State<ReminderForm> {
                   title: "Reminder!",
                   message: title.text,
                   time: t,
-                  day: Day.tuesday,
+                  day: Day.sunday,
                 );
                 Get.to(
                   () => LandingScreen(

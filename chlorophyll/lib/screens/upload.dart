@@ -15,9 +15,10 @@ class Upload extends StatefulWidget {
 
 class _UploadState extends State<Upload> {
   File _image;
+  bool isLoading = false;
   final picker = ImagePicker();
   Future getImage() async {
-    final pickedFile = await picker.getImage(source: ImageSource.camera);
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
 
     setState(() {
       if (pickedFile != null) {
@@ -110,12 +111,25 @@ class _UploadState extends State<Upload> {
                 SizedBox(
                   height: s.hHelper(4),
                 ),
-                CustomButton(
-                  title: "Analyse",
-                  onButtonPressed: () async {
-                    await uploadImage(_image);
-                  },
-                )
+                isLoading
+                    ? Center(
+                        child: CircularProgressIndicator(
+                          valueColor:
+                              new AlwaysStoppedAnimation<Color>(primaryGreen),
+                        ),
+                      )
+                    : CustomButton(
+                        title: "Analyse",
+                        onButtonPressed: () async {
+                          setState(() {
+                            isLoading = true;
+                          });
+                          await uploadImage(_image);
+                          setState(() {
+                            isLoading = false;
+                          });
+                        },
+                      )
               ],
             ),
           ),

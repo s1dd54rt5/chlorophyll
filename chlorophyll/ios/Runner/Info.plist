@@ -20,6 +20,11 @@
 <!-- End of the Google Sign-in Section -->
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Loaction Permission</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+  	<key>NSAllowsArbitraryLoads</key>
+      <true/>
+	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Loaction Permission</string>
 	<key>NSMicrophoneUsageDescription</key>
