@@ -103,9 +103,13 @@ class _UploadState extends State<Upload> {
                             ],
                           ),
                         )
-                      : ClipRRect(
-                          child: Image.file(_image),
-                          borderRadius: BorderRadius.circular(5),
+                      : Container(
+                          alignment: Alignment.center,
+                          width: double.infinity,
+                          child: ClipRRect(
+                            child: Image.file(_image),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
                         ),
                 ),
                 SizedBox(
