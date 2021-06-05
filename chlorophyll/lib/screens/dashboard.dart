@@ -26,6 +26,8 @@ class _DashboardState extends State<Dashboard> {
 
   bool isLoading = false;
 
+  List remedies = [];
+
   Map<String, dynamic> userDetails = {};
 
   Map<String, dynamic> weatherDetails = {};
@@ -81,6 +83,9 @@ class _DashboardState extends State<Dashboard> {
     var prefs = await getHelper();
     var json = prefs.getString("userDetails");
     userDetails = jsonDecode(json);
+    if (prefs.containsKey("remedies")) {
+      remedies = jsonDecode(prefs.getString("remedies"));
+    }
     await getLocation();
     sunrise = DateTime.fromMillisecondsSinceEpoch(
         weatherDetails["sys"]["sunrise"] * 1000);
@@ -100,171 +105,210 @@ class _DashboardState extends State<Dashboard> {
               valueColor: new AlwaysStoppedAnimation<Color>(primaryGreen),
             ),
           )
-        : Stack(
-            children: [
-              Positioned(
-                left: -120,
-                top: -120,
-                child: Container(
-                  height: s.hHelper(50),
-                  width: s.hHelper(50),
-                  decoration: BoxDecoration(
-                    color: secondaryGreen,
-                    borderRadius: BorderRadius.circular(1000),
+        : SingleChildScrollView(
+            child: Stack(
+              children: [
+                Positioned(
+                  left: -120,
+                  top: -120,
+                  child: Container(
+                    height: s.hHelper(50),
+                    width: s.hHelper(50),
+                    decoration: BoxDecoration(
+                      color: secondaryGreen,
+                      borderRadius: BorderRadius.circular(1000),
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: s.wHelper(5),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: s.hHelper(8),
-                    ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Welcome,",
-                              style: smallTextBold,
-                            ),
-                            Text(
-                              userDetails["first_name"],
-                              style: bigTextBold,
-                            ),
-                          ],
-                        ),
-                        Spacer(),
-                        GestureDetector(
-                          onTap: () {
-                            Get.to(() => Profile());
-                          },
-                          child: Icon(
-                            CupertinoIcons.profile_circled,
-                            size: 36,
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: s.hHelper(2),
-                    ),
-                    Text(
-                      "Today in " + weatherDetails["name"] + "!",
-                      style: smallTextBold,
-                    ),
-                    SizedBox(
-                      height: s.hHelper(2),
-                    ),
-                    Text(
-                      weatherDetails["weather"][0]["main"],
-                      style: smallerTextBold,
-                    ),
-                    SizedBox(
-                      height: s.hHelper(0.5),
-                    ),
-                    Text(
-                      weatherDetails["weather"][0]["description"],
-                      style: smallTextLight,
-                    ),
-                    SizedBox(
-                      width: s.wHelper(2),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          weatherDetails["main"]["temp"]
-                                  .toString()
-                                  .substring(0, 2) +
-                              "° Celcius",
-                          style: smallTextLight,
-                        ),
-                        Text(
-                          "Humidity " +
-                              weatherDetails["main"]["temp"].toString() +
-                              "%",
-                          style: smallTextLight,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: s.hHelper(0.5),
-                    ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Icon(CupertinoIcons.sunrise),
-                        SizedBox(
-                          width: s.wHelper(1),
-                        ),
-                        Text(
-                          getTime(sunrise),
-                          style: smallTextLight,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: s.hHelper(0.5),
-                    ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Icon(CupertinoIcons.sunset),
-                        SizedBox(
-                          width: s.wHelper(1),
-                        ),
-                        Text(
-                          getTime(sunset),
-                          style: smallTextLight,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: s.hHelper(4),
-                    ),
-                    Text(
-                      "Your past searches",
-                      style: smallerTextBold,
-                    ),
-                    SizedBox(
-                      height: s.hHelper(2),
-                    ),
-                    Container(
-                      height: s.hHelper(15),
-                      width: double.infinity,
-                      decoration: DottedDecoration(
-                        dash: [10, 15],
-                        shape: Shape.box,
-                        borderRadius: BorderRadius.circular(20),
-                        color: primaryGreen,
-                        strokeWidth: 2.5,
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: s.wHelper(5),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: s.hHelper(8),
                       ),
-                      alignment: Alignment.center,
-                      child: Text(
-                        "No searches yet",
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Welcome,",
+                                style: smallTextBold,
+                              ),
+                              Text(
+                                userDetails["first_name"],
+                                style: bigTextBold,
+                              ),
+                            ],
+                          ),
+                          Spacer(),
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(() => Profile());
+                            },
+                            child: Icon(
+                              CupertinoIcons.profile_circled,
+                              size: 36,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: s.hHelper(2),
+                      ),
+                      Text(
+                        "Today in " + weatherDetails["name"] + "!",
+                        style: smallTextBold,
+                      ),
+                      SizedBox(
+                        height: s.hHelper(2),
+                      ),
+                      Text(
+                        weatherDetails["weather"][0]["main"],
+                        style: smallerTextBold,
+                      ),
+                      SizedBox(
+                        height: s.hHelper(0.5),
+                      ),
+                      Text(
+                        weatherDetails["weather"][0]["description"],
                         style: smallTextLight,
                       ),
-                    ),
-                    SizedBox(
-                      height: s.hHelper(4),
-                    ),
-                    CustomButton(
-                      title: "Start analysis",
-                      onButtonPressed: () {
-                        Get.to(() => Upload());
-                      },
-                    )
-                  ],
+                      SizedBox(
+                        width: s.wHelper(2),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            weatherDetails["main"]["temp"]
+                                    .toString()
+                                    .substring(0, 2) +
+                                "° Celcius",
+                            style: smallTextLight,
+                          ),
+                          Text(
+                            "Humidity " +
+                                weatherDetails["main"]["temp"].toString() +
+                                "%",
+                            style: smallTextLight,
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: s.hHelper(0.5),
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Icon(CupertinoIcons.sunrise),
+                          SizedBox(
+                            width: s.wHelper(1),
+                          ),
+                          Text(
+                            getTime(sunrise),
+                            style: smallTextLight,
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: s.hHelper(0.5),
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Icon(CupertinoIcons.sunset),
+                          SizedBox(
+                            width: s.wHelper(1),
+                          ),
+                          Text(
+                            getTime(sunset),
+                            style: smallTextLight,
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: s.hHelper(4),
+                      ),
+                      Text(
+                        "Your past searches",
+                        style: smallerTextBold,
+                      ),
+                      SizedBox(
+                        height: s.hHelper(2),
+                      ),
+                      remedies.length == 0
+                          ? Container(
+                              height: s.hHelper(15),
+                              width: double.infinity,
+                              decoration: DottedDecoration(
+                                dash: [10, 15],
+                                shape: Shape.box,
+                                borderRadius: BorderRadius.circular(20),
+                                color: primaryGreen,
+                                strokeWidth: 2.5,
+                              ),
+                              alignment: Alignment.center,
+                              child: Text(
+                                "No searches yet",
+                                style: smallTextLight,
+                              ),
+                            )
+                          : Column(
+                              children: [
+                                for (var remedy in remedies)
+                                  Container(
+                                    width: double.infinity,
+                                    decoration: DottedDecoration(
+                                      dash: [10, 15],
+                                      shape: Shape.box,
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: primaryGreen,
+                                      strokeWidth: 2.5,
+                                    ),
+                                    padding: EdgeInsets.all(s.wHelper(4)),
+                                    margin:
+                                        EdgeInsets.only(bottom: s.hHelper(1)),
+                                    alignment: Alignment.center,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          remedy["name"],
+                                          style: smallerTextBold,
+                                        ),
+                                        SizedBox(
+                                          height: s.hHelper(1),
+                                        ),
+                                        Text(
+                                          remedy["remedy"],
+                                          style: smallTextLight,
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                              ],
+                            ),
+                      SizedBox(
+                        height: s.hHelper(4),
+                      ),
+                      CustomButton(
+                        title: "Start analysis",
+                        onButtonPressed: () {
+                          Get.to(() => Upload());
+                        },
+                      )
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           );
   }
 }

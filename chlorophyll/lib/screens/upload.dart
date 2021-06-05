@@ -1,10 +1,15 @@
+import 'dart:convert';
+
 import 'package:chlorophyll/api/crop.dart';
 import 'package:chlorophyll/constants/theme.dart';
+import 'package:chlorophyll/helpers/prefs.dart';
 import 'package:chlorophyll/helpers/size.dart';
+import 'package:chlorophyll/screens/landingScreen.dart';
 import 'package:chlorophyll/widgets/button.dart';
 import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
@@ -128,10 +133,22 @@ class _UploadState extends State<Upload> {
                           setState(() {
                             isLoading = true;
                           });
-                          await uploadImage(_image);
+                          Map result = await uploadImage(_image);
+                          var prefs = await getHelper();
+                          if (prefs.containsKey("remedies")) {
+                            List remedies =
+                                jsonDecode(prefs.getString("remedies"));
+                            remedies.add(result);
+                            prefs.setString("remedies", jsonEncode(remedies));
+                          } else {
+                            List remedies = [];
+                            remedies.add(result);
+                            prefs.setString("remedies", jsonEncode(remedies));
+                          }
                           setState(() {
                             isLoading = false;
                           });
+                          Get.to(() => LandingScreen(index: 1));
                         },
                       )
               ],

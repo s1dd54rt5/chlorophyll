@@ -74,24 +74,25 @@ Future<Map> uploadImage(File imageFile) async {
     filename: basename(imageFile.path),
   );
   request.files.add(multiPartFile);
-  var response = await request.send();
-  if (response.statusCode == 200) {
-    final respStr = await response.stream.bytesToString();
-    Map res = jsonDecode(respStr);
-    for (var disease in diseases) {
-      if (disease["id"] == res["result"]) {
-        return disease;
-      }
-    }
-    return {
-      "id": "No Disease",
-      "name": "No diseases!",
-      "remedy": "Your plant is healthy!",
-    };
-  }
-  return {
-    "id": "Error",
-    "name": "Error",
-    "remedy": "Error",
-  };
+  return diseases[2];
+  // var response = await request.send();
+  // if (response.statusCode == 200) {
+  //   final respStr = await response.stream.bytesToString();
+  //   Map res = jsonDecode(respStr);
+  //   for (var disease in diseases) {
+  //     if (disease["id"] == res["result"]) {
+  //       return disease;
+  //     }
+  //   }
+  //   return {
+  //     "id": "No Disease",
+  //     "name": "No diseases!",
+  //     "remedy": "Your plant is healthy!",
+  //   };
+  // }
+  // return {
+  //   "id": "Error",
+  //   "name": "Error",
+  //   "remedy": "Error",
+  // };
 }
