@@ -274,7 +274,7 @@ class _DashboardState extends State<Dashboard> {
                                     padding: EdgeInsets.all(s.wHelper(4)),
                                     margin:
                                         EdgeInsets.only(bottom: s.hHelper(1)),
-                                    alignment: Alignment.center,
+                                    alignment: Alignment.centerLeft,
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,

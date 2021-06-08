@@ -170,7 +170,8 @@ class _FertiliserState extends State<Fertiliser> {
                                 Spacer(),
                                 Text(
                                   soilDetails["data"][0]["soil_moisture"]
-                                      .toString(),
+                                      .toString()
+                                      .substring(0, 4),
                                   style: bigTextLight,
                                 ),
                               ],
