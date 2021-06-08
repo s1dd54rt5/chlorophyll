@@ -383,7 +383,7 @@ class _ReminderFormState extends State<ReminderForm> {
                   title: "Reminder!",
                   message: title.text,
                   time: t,
-                  day: Day.sunday,
+                  day: Day.tuesday,
                 );
                 Get.to(
                   () => LandingScreen(
