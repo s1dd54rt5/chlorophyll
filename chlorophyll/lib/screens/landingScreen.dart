@@ -59,7 +59,7 @@ class _LandingScreenState extends State<LandingScreen> {
               icon: Icon(
                 CupertinoIcons.tree,
               ),
-              label: "Fertiliser",
+              label: "Soil",
             ),
           ],
         ),

@@ -57,7 +57,7 @@ class _ReminderFormState extends State<ReminderForm> {
           horizontal: s.wHelper(5),
           vertical: s.hHelper(3),
         ),
-        height: s.hHelper(50),
+        height: s.hHelper(55),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:path/path.dart';
 import 'dart:io';
 import 'package:http/http.dart' as http;
@@ -63,7 +65,7 @@ Future<Map> uploadImage(File imageFile) async {
   var stream = new http.ByteStream(imageFile.openRead());
   stream.cast();
   var length = await imageFile.length();
-  var uri = Uri.parse("http://598a22e730e8.ngrok.io/upload");
+  var uri = Uri.parse("http://81575edc9717.ngrok.io/upload");
   var request = new http.MultipartRequest('POST', uri);
   var multiPartFile = new http.MultipartFile(
     'file',
@@ -72,25 +74,25 @@ Future<Map> uploadImage(File imageFile) async {
     filename: basename(imageFile.path),
   );
   request.files.add(multiPartFile);
-  return diseases[2];
-  // var response = await request.send();
-  // if (response.statusCode == 200) {
-  //   final respStr = await response.stream.bytesToString();
-  //   Map res = jsonDecode(respStr);
-  //   for (var disease in diseases) {
-  //     if (disease["id"] == res["result"]) {
-  //       return disease;
-  //     }
-  //   }
-  //   return {
-  //     "id": "No Disease",
-  //     "name": "No diseases!",
-  //     "remedy": "Your plant is healthy!",
-  //   };
-  // }
-  // return {
-  //   "id": "Error",
-  //   "name": "Error",
-  //   "remedy": "Error",
-  // };
+  // return diseases[2];
+  var response = await request.send();
+  if (response.statusCode == 200) {
+    final respStr = await response.stream.bytesToString();
+    Map res = jsonDecode(respStr);
+    for (var disease in diseases) {
+      if (disease["id"] == res["result"]) {
+        return disease;
+      }
+    }
+    return {
+      "id": "No Disease",
+      "name": "No diseases!",
+      "remedy": "Your plant is healthy!",
+    };
+  }
+  return {
+    "id": "Error",
+    "name": "Error",
+    "remedy": "Error",
+  };
 }
