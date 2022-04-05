@@ -48,6 +48,7 @@ class _FertiliserState extends State<Fertiliser> {
     waterDetails = await getWaterData(
         _locationData.latitude.toString(), _locationData.longitude.toString());
     print(waterDetails);
+    print(soilDetails);
     setState(() {
       isLoading = false;
     });
@@ -148,8 +149,9 @@ class _FertiliserState extends State<Fertiliser> {
                                 Spacer(),
                                 Text(
                                   soilDetails["data"][0]["soil_temperature"]
-                                      .toString()
-                                      .substring(0, 4),
+                                          .toString()
+                                          .substring(0, 4) +
+                                      " C",
                                   style: bigTextLight,
                                 ),
                               ],
@@ -170,8 +172,9 @@ class _FertiliserState extends State<Fertiliser> {
                                 Spacer(),
                                 Text(
                                   soilDetails["data"][0]["soil_moisture"]
-                                      .toString()
-                                      .substring(0, 4),
+                                          .toString()
+                                          .substring(0, 4) +
+                                      "%",
                                   style: bigTextLight,
                                 ),
                               ],
@@ -192,8 +195,9 @@ class _FertiliserState extends State<Fertiliser> {
                                 Spacer(),
                                 Text(
                                   waterDetails["data"][0]["water_vapor"]
-                                      .toString()
-                                      .substring(0, 4),
+                                          .toString()
+                                          .substring(0, 4) +
+                                      "g/cm",
                                   style: bigTextLight,
                                 ),
                               ],

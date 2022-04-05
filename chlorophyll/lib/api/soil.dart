@@ -17,7 +17,6 @@ Future<Map<String, dynamic>> getSoilData(
         "x-api-key": ambeeKey,
       },
     );
-    print(response.body);
     res = jsonDecode(response.body);
   } catch (e) {
     print(e);
@@ -37,7 +36,6 @@ Future<Map<String, dynamic>> getWaterData(
         "x-api-key": ambeeKey,
       },
     );
-    print(response.body);
     res = jsonDecode(response.body);
   } catch (e) {
     print(e);

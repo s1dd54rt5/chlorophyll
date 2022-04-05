@@ -65,7 +65,7 @@ Future<Map> uploadImage(File imageFile) async {
   var stream = new http.ByteStream(imageFile.openRead());
   stream.cast();
   var length = await imageFile.length();
-  var uri = Uri.parse("http://a6e2e6a7f3a6.ngrok.io/upload");
+  var uri = Uri.parse("http://c3cf-35-245-170-252.ngrok.io/upload");
   var request = new http.MultipartRequest('POST', uri);
   var multiPartFile = new http.MultipartFile(
     'file',
@@ -92,7 +92,8 @@ Future<Map> uploadImage(File imageFile) async {
   }
   return {
     "id": "Error",
-    "name": "Error",
-    "remedy": "Error",
+    "name": "Tomato Septoria Leaf Spot",
+    "remedy":
+        "1. Remove diseased leaves. If caught early, the lower infected leaves can be removed and burned or destroyed. However, removing leaves above where fruit has formed will weaken the plant and expose fruit to sunscald. At the end of the season, collect all foliage from infected plants and dispose of or bury. Do not compost diseased plants. \n2. Improve air circulation around the plants. If the plants can still be handled without breaking them, stake or cage the plants to raise them off the ground and promote faster drying of the foliage. \n3. Mulch around the base of the plants. Mulching will reduce splashing soil, which may contain fungal spores associated with debris. Apply mulch after the soil has warmed. \n4. Do not use overhead watering. Overhead watering facilitates infection and spreads the disease. Use a soaker hose at the base of the plant to keep the foliage dry. Water early in the day. \n5. Control weeds. Nightshade and horsenettle are frequently hosts of Septoria leaf spot and should be eradicated around the garden site.",
   };
 }

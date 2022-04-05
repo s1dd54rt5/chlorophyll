@@ -64,6 +64,7 @@ class _DashboardState extends State<Dashboard> {
 
     weatherDetails = await w.getWeatherDetails(
         _locationData.latitude.toString(), _locationData.longitude.toString());
+    print(weatherDetails);
     setState(() {
       isLoading = false;
     });
